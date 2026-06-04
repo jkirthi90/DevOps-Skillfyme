@@ -24,6 +24,8 @@ services:
       DB_USER: admin
       DB_PASSWORD: password
       DB_NAME: demo
+    ports:
+      - "5000:5000"
     depends_on:
       - mysql
     networks:
