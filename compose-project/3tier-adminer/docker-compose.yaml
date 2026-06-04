@@ -49,7 +49,7 @@ services:
     restart: always
     container_name: adminer
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
       - mysql
     networks:
