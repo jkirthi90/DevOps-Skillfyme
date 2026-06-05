@@ -22,7 +22,7 @@ def home():
     conn.close()
 
     return f"""
-    <h1>3 Tier Docker Compose Demo with frontend --> backend --> db</h1>
+    <h1>3 Tier Docker Compose Demo</h1>
     <h2>{result[0]}</h2>
     """
 
