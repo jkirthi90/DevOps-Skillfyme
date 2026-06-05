@@ -5,3 +5,79 @@ Username: admin
 Password: password
 
 Database: demo
+
+Jenkins pipeline:
+pipeline {
+	agent {
+	    node {
+            label 'worker'
+	    }
+    }
+	stages {	
+	  stage('Clone Repository') {
+            steps {
+                // Clones the public repository into the default workspace directory
+                sh 'rm -rf DevOps-Skillfyme'
+                git url: 'https://github.com/jkirthi90/DevOps-Skillfyme.git', branch: 'docker-compose'
+            }
+	  }
+	  stage('Build') {
+         steps {
+         // Build the application
+         sh 'pwd'
+         sh 'cd compose-project/3tier-adminer && docker-compose down && docker-compose up -d'
+         }
+	    }
+	  stage('Test'){
+	     steps{
+	     // Running the tests
+	     sh 'docker ps'
+	     }
+	  }
+	}
+}
+
+
+Jenkins Freestyle Project:
+Master
+
+docker run -d -v jenkins_home:/var/jenkins_home -p 8085:8080 -p 50000:50000 --restart=on-failure jenkins/jenkins:latest
+sudo chmod 666 /var/run/docker.sock
+sudo usermod -aG docker ${USER}
+
+Worker
+sudo apt install docker-compose
+sudo chmod 666 /var/run/docker.sock 
+sudo apt install openjdk-21-headless -y
+
+
+Jenkins
+cd compose-project/3tier-adminer
+docker-compose down
+docker-compose up -d
+docker ps
+set -e
+
+echo "Waiting for MySQL to be ready inside container 'mysql'..."
+
+for i in {1..15}; do
+  if docker exec mysql mysqladmin -h 127.0.0.1 -u admin -ppassword ping --silent; then
+    echo "MySQL is up on attempt $i"
+    break
+  fi
+  echo "MySQL not ready yet (attempt $i), sleeping 2s..."
+  sleep 2
+done
+
+echo "Running test query..."
+docker exec mysql mysql -h 127.0.0.1 -u admin -ppassword demo -e "SELECT * FROM greetings;"
+
+echo "DB check succeeded."
+curl http://localhost:8080/
+docker logs --tail -100 mysql
+docker logs --tail -100 flask-app
+docker logs --tail -100 web
+docker logs --tail -100 adminer
+
+http://publicIpofWorker:8080/
+http://publicIpofWorker:80
