@@ -5,7 +5,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
   labels:
-    app: postgres
+    app: cps-postgres-db
 data:
   POSTGRES_DB: postgresdb
   POSTGRES_USER: admin
@@ -60,7 +60,7 @@ spec:
 
 
 
-kubectl apply -f postgres.yaml
+kubectl apply -f postgres-deployment.yaml
 ------------------------------
 apiVersion: apps/v1
 kind: Deployment
