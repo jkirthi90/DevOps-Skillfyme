@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 Kubeadm setup:\
+Master and worker: \
+1  sudo hostnamectl set-hostname k8s_master/k8s_worker\
+    2  exit\
+    3  sudo apt update\
+    4  sudo swapoff -a\
+    5  sudo sed -i '/ swap / s/^/#/' /etc/fstab\
+    6  sudo modprobe overlay\
+    7  sudo modprobe br_netfilter\
+    8  sudo tee /etc/sysctl.d/kubernetes.conf <<EOF\
+net.bridge.bridge-nf-call-ip6tables = 1\
+net.bridge.bridge-nf-call-iptables = 1\
+net.ipv4.ip_forward = 1\
+EOF\
+\
+    9  sudo sysctl --system\
+   10  sudo apt install -y docker.io\
+   11  sudo systemctl enable docker\
+   12  sudo systemctl start docker\
+   13  sudo apt install -y apt-transport-https ca-certificates curl gpg\
+   14  sudo mkdir -p /etc/apt/keyrings\
+   15  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg\
+   16  echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \\\
+https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list\
+   17  sudo apt update\
+   18  sudo apt install -y kubelet kubeadm kubectl\
+   19  sudo usermod -aG docker $USER\
+   20  sudo apt-mark hold kubelet kubeadm kubectl\
+\
+Master:\
+   21  sudo kubeadm init\
+   22  mkdir -p $HOME/.kube\
+   23  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config\
+   24  sudo chown $(id -u):$(id -g) $HOME/.kube/config\
+   25  kubectl get pods -A\
+   26  kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/calico.yaml (only for master)\
+   27  watch kubectl get pods -A\
+   28  kubectl get nodes\
+\
+Worker:\
+sudo kubeadm join 172.31.27.52:6443 --token jje1e5.q7wiud5tgxi07c86 \\\
+	--discovery-token-ca-cert-hash sha256:b01d9655f07ae3fc11c39571aac7f1ed81da81599ecfe950390a509537349e34 \
+}
