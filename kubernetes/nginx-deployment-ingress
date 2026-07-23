@@ -51,3 +51,9 @@ spec:
             name: nginx-service
             port:
               number: 8000
+
+
+
+
+kubectl apply -f nginx-ingress.yaml 
+kubectl patch svc ingress-nginx-controller -n ingress-nginx --type='merge' -p '{"spec": {"externalIPs": ["<Master public IP>"]}}'
