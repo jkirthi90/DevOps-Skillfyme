@@ -5,7 +5,7 @@ nginx-ingress.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-deployment-ingress
 spec:
   replicas: 1
   selector:
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: nginx-service-ingress
 spec:
   type: NodePort
   selector:
@@ -48,7 +48,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nginx-service
+            name: nginx-service-ingress
             port:
               number: 8000
 
