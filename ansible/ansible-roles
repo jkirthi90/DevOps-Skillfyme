@@ -1,8 +1,8 @@
 To create a ansible role
 
-# ansible galaxy init <rolename>
-eg: ansible galaxy init apache2
-    ansible galaxy init prerequisites
+# ansible-galaxy init <rolename>
+eg: ansible-galaxy init apache2
+    ansible-galaxy init prerequisites
 
 ubuntu@ansible-master:~/ansible/roles$ tree
 .
