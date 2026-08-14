@@ -9,7 +9,8 @@ To install ansible:
 	4. sudo mkdir -p /etc/ansible
 	5. sudo vi /etc/ansible/hosts
 	          [servers]
-            server1 ansible_host=203.0.113.111
+            <worker_hostname> ansible_host=<worker_private_ip> (or)
+            <worker_hostname> ansible_host=<worker_private_ip> ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/<privatekeyfilename>
             [all:vars]
             ansible_python_interpreter=/usr/bin/python3
 
@@ -17,7 +18,7 @@ To install ansible:
 
 =================================================
 
-From ansible-master: add the public key to worker node authorized key file in  .ssh/authorized_keys. 
+From ansible-master: add the generated public key to worker node authorized key file in  .ssh/authorized_keys. 
 
 
 
@@ -41,6 +42,6 @@ ansible-playbook <playbook-name.yaml>
 
 Ad-hoc commands:
 
-ansible all -a "free -m"
+ansible all -a "free -m" or ansible all -a "free -m" --private-key=~/.ssh/<privatekeyfilename>
 ansible all -a "df -h"
 ansible all -a "uptime"
