@@ -1,5 +1,4 @@
 To create a ansible role
-
 # ansible-galaxy init <rolename>
 eg: ansible-galaxy init apache2
     ansible-galaxy init prerequisites
@@ -53,7 +52,7 @@ ubuntu@ansible-master:~/ansible/roles$ cat apache2/tasks/main.yml
    update_cache: yes
 
 
-Add the tasks/main.yaml contenet as below under prerequisites role:
+Add the prerequisites/tasks/main.yml contenet as below under prerequisites role:
 ---
 - name: Install git
   apt:
@@ -70,6 +69,7 @@ ubuntu@ansible-master:~/ansible/roles$ cat stack.yaml
 - hosts: all
   become: yes
   roles:
+    - prerequisites
     - apache2
 
 
