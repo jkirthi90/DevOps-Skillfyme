@@ -18,9 +18,22 @@ To install ansible:
 
 =================================================
 
-From ansible-master: add the generated public key to worker node authorized key file in  .ssh/authorized_keys. 
+From ansible-master: add the newly generated(using ssh-genkey) public key to worker node authorized key file in  .ssh/authorized_keys. 
+dont give key name and paraphrase. Check the connectivity using: ssh <worker_private_ip>
 
 
+If key name is provided then, perform any one for commands to work:
+connectivity check ssh -i ~/.ssh/<privatekeyfilename> <worker_private_ip>
+1.  sudo vi /etc/ansible/hosts on master
+	[servers]        
+<worker_hostname> ansible_host=<worker_private_ip> ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/<privatekeyfilename>
+2. While executing commands:
+ansible all -a "free -m" --private-key=~/.ssh/<privatekeyfilename>
+3. find the path for anisble.conf using ansible --version, update the file
+[defaults]
+inventory = ./hosts
+private_key_file = ~/.ssh/<privatekeyfilename>
+remote_user = ubuntu
 
 To add ansible host entry as below:
 
