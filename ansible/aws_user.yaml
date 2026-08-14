@@ -1,0 +1,28 @@
+---
+- name: Ansible playbook to create IAM user in AWS cloud
+  hosts: localhost //runs on master
+  connection: local //to connect to master 
+
+  tasks:
+    - name: Create IAM user
+      amazon.aws.iam_user:
+        name: ansible-user
+        state: present
+        region: us-east-1
+      register: iam_user_result
+
+    - name: Display IAM User added information
+      ansible.builtin.debug:
+        var: iam_user_result
+
+
+
+
+        aws account -> IAM User-> <current_user> -> Security Credentials tab - > Enable console access -> Access key tab -> generate access key
+        on master node:
+        sudo snap install aws-cli --classic
+        aws configure
+        AWS Access Key ID [None]: <provide aws key id>
+        AWS Secret Access Key [None]: <provide access key>
+        Default region name [None]: 
+        Default output format [None]: 
