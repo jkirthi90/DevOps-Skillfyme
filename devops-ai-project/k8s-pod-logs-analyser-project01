@@ -95,7 +95,7 @@ Create/edit:
 
 sudo systemctl edit ollama
 
-Add:
+Add(in middle, above the comment "changes below this comment will be discarded...."):
 
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0:11434"
