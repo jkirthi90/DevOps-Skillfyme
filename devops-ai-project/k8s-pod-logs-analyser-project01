@@ -82,6 +82,7 @@ sudo systemctl start ollama
 Check:
 
 sudo systemctl status ollama
+
 4. Configure Ollama for Kubernetes access
 
 By default, Ollama may listen only on localhost.
@@ -111,6 +112,7 @@ ss -lntp | grep 11434
 Expected:
 
 LISTEN ... 0.0.0.0:11434
+
 5. Download Qwen
 
 You are using the lightweight model:
@@ -125,6 +127,7 @@ Expected:
 
 NAME
 qwen2.5:1.5b
+
 6. Test Ollama locally
 
 Run:
@@ -157,6 +160,8 @@ hostname -I
 Your project has been using:
 
 172.31.20.63
+
+kubectl taint nodes <master_private_ip>  key-
 
 Start a temporary curl pod:
 
