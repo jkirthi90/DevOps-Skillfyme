@@ -161,7 +161,7 @@ Your project has been using:
 
 172.31.20.63
 
-kubectl taint nodes <master_private_ip>  key-
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 
 Start a temporary curl pod:
 
