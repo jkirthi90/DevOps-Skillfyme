@@ -100,6 +100,9 @@ Add:
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0:11434"
 
+If this doesn't work 
+sudo mkdir -p /etc/systemd/system/ollama.service.d/ && echo -e "[Service]\nEnvironment=\"OLLAMA_HOST=0.0.0.0:11434\"" | sudo tee /etc/systemd/system/ollama.service.d/override.conf
+
 Then:
 
 sudo systemctl daemon-reload
@@ -112,6 +115,9 @@ ss -lntp | grep 11434
 Expected:
 
 LISTEN ... 0.0.0.0:11434
+
+Or
+systemctl show ollama --property=Environment
 
 5. Download Qwen
 
