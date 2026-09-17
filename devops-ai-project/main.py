@@ -20,7 +20,7 @@ from kubernetes import client, config
 
 OLLAMA_URL = os.getenv(
     "OLLAMA_URL",
-    "http://172.31.20.63:11434"
+    "http://<PVT IP>:11434"
 )
 
 MODEL = os.getenv(
