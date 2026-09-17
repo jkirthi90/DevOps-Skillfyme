@@ -293,6 +293,7 @@ python -m py_compile main.py && echo "Syntax OK"
 Expected:
 
 Syntax OK
+
 13. Test FastAPI without Docker
 
 Run:
@@ -316,6 +317,7 @@ Expected:
 Stop FastAPI with:
 
 CTRL+C
+
 14. Create Dockerfile
 cd ~/ai-devops/app
 nano Dockerfile
@@ -335,18 +337,20 @@ COPY main.py .
 EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
 15. Build Docker image
 cd ~/ai-devops/app
 
 docker build -t ai-log-analyzer:6.1 .
 
 if docker not installed, install as below:
-sudo apt install docker.io
+sudo apt install docker.io -y
 sudo usermod -aG docker ${USER}
 
 Check:
 
 docker images | grep ai-log-analyzer
+
 16. Create Kubernetes RBAC
 
 Create:
@@ -396,6 +400,7 @@ roleRef:
 Apply:
 
 kubectl apply -f ~/ai-devops/k8s/ai-log-analyzer-rbac.yaml
+
 17. Verify RBAC
 kubectl auth can-i get pods \
   --as=system:serviceaccount:default:ai-log-analyzer \
@@ -424,7 +429,8 @@ kubectl auth can-i get pods/log \
 Expected:
 
 yes
-18. Create Deployment
+
+18. Create Deployment - change PVT IP
 
 Create:
 
@@ -515,6 +521,7 @@ ai-log-analyzer-xxxxx   1/1   Running
 Check service:
 
 kubectl get svc ai-log-analyzer
+
 20. Check deployment
 kubectl rollout status deployment/ai-log-analyzer
 
@@ -525,6 +532,7 @@ deployment "ai-log-analyzer" successfully rolled out
 Check logs:
 
 kubectl logs deployment/ai-log-analyzer
+
 21. Port-forward the API
 
 Run:
@@ -556,6 +564,7 @@ Expected:
   "service":"ai-log-analyzer",
   "version":"6.1"
 }
+
 23. Test basic AI analysis
 curl --max-time 240 \
   -X POST http://localhost:8000/analyze \
@@ -570,6 +579,7 @@ You should receive:
   "model":"qwen2.5:1.5b",
   "analysis":"..."
 }
+
 24. Create a deliberately failing application
 
 This is how we test the actual Kubernetes troubleshooting functionality.
@@ -594,6 +604,7 @@ kubectl get pods -l app=ai-test-crash
 You should eventually see:
 
 CrashLoopBackOff
+
 25. Inspect the failing application manually
 
 Get pod name:
@@ -629,6 +640,7 @@ You should see evidence such as:
 
 BackOff
 Back-off restarting failed container
+
 26. Let AI Analyzer investigate it
 
 This is the important test.
@@ -697,6 +709,7 @@ Exit code
 instead of simply saying:
 
 Running = Healthy
+
 28. The actual root cause of your test
 
 Your test command was:
