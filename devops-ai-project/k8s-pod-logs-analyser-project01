@@ -62,6 +62,7 @@ kubectl version --short
 Check pods:
 
 kubectl get pods -A
+
 3. Install Ollama
 
 Ollama runs directly on the Ubuntu host, not inside Kubernetes.
@@ -95,7 +96,7 @@ Create/edit:
 
 sudo systemctl edit ollama
 
-Add(in middle, above the comment "changes below this comment will be discarded...."):
+Add(in middle, above the comment "edits below this comment will be discarded...."):
 
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0:11434"
@@ -199,6 +200,7 @@ Kubernetes Pod
 Ollama
       ↓
 Qwen
+
 8. Create project directories
 mkdir -p ~/ai-devops/app
 mkdir -p ~/ai-devops/k8s
@@ -209,6 +211,7 @@ Structure:
 ai-devops/
 ├── app/
 └── k8s/
+
 9. Create Python requirements
 cd ~/ai-devops/app
 nano requirements.txt
@@ -229,7 +232,7 @@ cd ~/ai-devops/app
 python3 -m venv venv
 
 If python venv is not installed, install as below:
- sudo apt install python3.12-venv
+ sudo apt install python3.12-venv -y
 
 Activate:
 
@@ -240,8 +243,8 @@ Install:
 pip install -r requirements.txt
 
 Check:
-
 pip list
+
 11. Create main.py
 nano ~/ai-devops/app/main.py
 
