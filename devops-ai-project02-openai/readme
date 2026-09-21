@@ -37,7 +37,7 @@ spec:
 
       containers:
         - name: ai-log-analyzer
-          image: ai-log-analyzer:8.3
+          image: ai-log-analyzer:6.1
           imagePullPolicy: IfNotPresent
 
           ports:
