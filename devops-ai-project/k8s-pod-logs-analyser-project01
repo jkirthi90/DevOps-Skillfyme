@@ -346,6 +346,7 @@ docker build -t ai-log-analyzer:6.1 .
 if docker not installed, install as below:
 sudo apt install docker.io -y
 sudo usermod -aG docker ${USER}
+sudo chmod 666 /var/run/docker.sock
 
 Check:
 
