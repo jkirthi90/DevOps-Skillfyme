@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-k8s-security-analyzer
+  namespace: default
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: ai-k8s-security-analyzer
+
+  template:
+    metadata:
+      labels:
+        app: ai-k8s-security-analyzer
+
+    spec:
+      serviceAccountName: ai-k8s-security-analyzer
+
+      containers:
+        - name: ai-k8s-security-analyzer
+
+          image: ai-k8s-security-analyzer:1.0
+
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8000
+
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                 name: openai-secret
+                 key: api-key # This must match the key name inside your Secret data
+            - name: OPENAI_MODEL
+              value: "gpt-5.6-mini"
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 20
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-k8s-security-analyzer
+  namespace: default
+
+spec:
+  selector:
+    app: ai-k8s-security-analyzer
+
+  ports:
+    - port: 80
+      targetPort: 8000
+
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: openai-secret
+type: Opaque
+stringData:
+  api-key: "// openAI api key"
+
