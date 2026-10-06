@@ -1,0 +1,183 @@
+{
+  "namespace": "default",
+  "summary": {
+    "CRITICAL": 2,
+    "HIGH": 14,
+    "MEDIUM": 3,
+    "LOW": 2,
+    "INFO": 0
+  },
+  "finding_count": 21,
+  "findings": [
+    {
+      "severity": "CRITICAL",
+      "category": "RBAC",
+      "resource": "ClusterRoleBinding/cluster-admin",
+      "title": "cluster-admin binding",
+      "evidence": "Group:/system:masters",
+      "recommendation": "Review whether full cluster-admin is necessary."
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "RBAC",
+      "resource": "ClusterRoleBinding/kubeadm:cluster-admins",
+      "title": "cluster-admin binding",
+      "evidence": "Group:/kubeadm:cluster-admins",
+      "recommendation": "Review whether full cluster-admin is necessary."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/admin",
+      "title": "Role-management permission",
+      "evidence": "Role/RoleBinding write permission detected",
+      "recommendation": "Review for privilege escalation risk."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/cluster-admin",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['*']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/cluster-admin",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=[], verbs=['*']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:aggregate-to-admin",
+      "title": "Role-management permission",
+      "evidence": "Role/RoleBinding write permission detected",
+      "recommendation": "Review for privilege escalation risk."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:generic-garbage-collector",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['delete', 'get', 'list', 'patch', 'update', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:generic-garbage-collector",
+      "title": "Role-management permission",
+      "evidence": "Role/RoleBinding write permission detected",
+      "recommendation": "Review for privilege escalation risk."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:namespace-controller",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['delete', 'deletecollection', 'get', 'list', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:namespace-controller",
+      "title": "Role-management permission",
+      "evidence": "Role/RoleBinding write permission detected",
+      "recommendation": "Review for privilege escalation risk."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:controller:resourcequota-controller",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['list', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:kube-controller-manager",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['*'], verbs=['list', 'watch']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:kubelet-api-admin",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['nodes/log', 'nodes/metrics', 'nodes/proxy', 'nodes/stats'], verbs=['*']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "HIGH",
+      "category": "RBAC",
+      "resource": "ClusterRole/system:kubelet-api-admin",
+      "title": "Wildcard RBAC permission",
+      "evidence": "resources=['nodes/configz', 'nodes/healthz', 'nodes/pods'], verbs=['*']",
+      "recommendation": "Replace wildcards with least-privilege permissions."
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "Container Security",
+      "resource": "default/Deployment/ai-k8s-security-analyzer",
+      "title": "Seccomp not explicitly configured",
+      "evidence": "No seccompProfile found",
+      "recommendation": "Use RuntimeDefault or an appropriate Localhost profile."
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "Container Security",
+      "resource": "default/Deployment/ai-k8s-security-analyzer/ai-k8s-security-analyzer",
+      "title": "Non-root execution not enforced",
+      "evidence": "runAsNonRoot is not true at container/pod level",
+      "recommendation": "Set runAsNonRoot=true."
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "ServiceAccount",
+      "resource": "default/Deployment/ai-k8s-security-analyzer",
+      "title": "ServiceAccount token may be mounted",
+      "evidence": "automountServiceAccountToken is not false",
+      "recommendation": "Set false unless API access is required."
+    },
+    {
+      "severity": "LOW",
+      "category": "Workload Hardening",
+      "resource": "default/Deployment/ai-k8s-security-analyzer/ai-k8s-security-analyzer",
+      "title": "No resource limits",
+      "evidence": "resources.limits absent",
+      "recommendation": "Set CPU and memory limits based on measured usage."
+    },
+    {
+      "severity": "LOW",
+      "category": "Network Security",
+      "resource": "default",
+      "title": "No NetworkPolicy found",
+      "evidence": "Workloads exist but no NetworkPolicy objects exist",
+      "recommendation": "Define expected ingress and egress policies."
+    }
+  ],
+  "ai_explanation": "AI explanation unavailable: HTTPConnectionPool(host='172.31.45.61', port=11434): Read timed out. (read timeout=240)",
+  "model": "qwen2.5:1.5b"
+}
