@@ -1,0 +1,1026 @@
+{
+  "scope": "cluster",
+  "summary": {
+    "CRITICAL": 13,
+    "HIGH": 75,
+    "MEDIUM": 22,
+    "LOW": 10,
+    "INFO": 0
+  },
+  "namespaces_results": [
+    {
+      "namespace": "default",
+      "summary": {
+        "CRITICAL": 2,
+        "HIGH": 17,
+        "MEDIUM": 9,
+        "LOW": 3,
+        "INFO": 0
+      },
+      "finding_count": 31,
+      "findings": [
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/cluster-admin",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/system:masters",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/kubeadm:cluster-admins",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/kubeadm:cluster-admins",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "default/Pod/insecure-test",
+          "title": "Host network enabled",
+          "evidence": "spec.hostNetwork=true",
+          "recommendation": "Disable hostNetwork unless required."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "default/Pod/insecure-test",
+          "title": "Host PID namespace enabled",
+          "evidence": "spec.hostPID=true",
+          "recommendation": "Disable hostPID unless required."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "default/Pod/insecure-test",
+          "title": "hostPath volume used",
+          "evidence": "host-root: /",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=[], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:aggregate-to-admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'get', 'list', 'patch', 'update', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'deletecollection', 'get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:resourcequota-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kube-controller-manager",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/log', 'nodes/metrics', 'nodes/proxy', 'nodes/stats'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/configz', 'nodes/healthz', 'nodes/pods'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "default/Deployment/ai-k8s-security-analyzer",
+          "title": "Seccomp not explicitly configured",
+          "evidence": "No seccompProfile found",
+          "recommendation": "Use RuntimeDefault or an appropriate Localhost profile."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "default/Deployment/ai-k8s-security-analyzer/ai-k8s-security-analyzer",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "default/Deployment/ai-k8s-security-analyzer",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "default/Pod/insecure-test",
+          "title": "Seccomp not explicitly configured",
+          "evidence": "No seccompProfile found",
+          "recommendation": "Use RuntimeDefault or an appropriate Localhost profile."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Image Security",
+          "resource": "default/Pod/insecure-test/insecure-container",
+          "title": "Mutable/unpinned image tag",
+          "evidence": "nginx:latest",
+          "recommendation": "Pin to an immutable version or digest."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "default/Pod/insecure-test/insecure-container",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Linux Capabilities",
+          "resource": "default/Pod/insecure-test/insecure-container",
+          "title": "Additional capabilities added",
+          "evidence": "['NET_ADMIN', 'SYS_ADMIN']",
+          "recommendation": "Drop unnecessary capabilities."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "default/Pod/insecure-test",
+          "title": "Default ServiceAccount used",
+          "evidence": "serviceAccountName=default",
+          "recommendation": "Use a dedicated ServiceAccount."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "default/Pod/insecure-test",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "default/Deployment/ai-k8s-security-analyzer/ai-k8s-security-analyzer",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "default/Pod/insecure-test/insecure-container",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Network Security",
+          "resource": "default",
+          "title": "No NetworkPolicy found",
+          "evidence": "Workloads exist but no NetworkPolicy objects exist",
+          "recommendation": "Define expected ingress and egress policies."
+        }
+      ]
+    },
+    {
+      "namespace": "kube-node-lease",
+      "summary": {
+        "CRITICAL": 2,
+        "HIGH": 14,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "finding_count": 16,
+      "findings": [
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/cluster-admin",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/system:masters",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/kubeadm:cluster-admins",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/kubeadm:cluster-admins",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=[], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:aggregate-to-admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'get', 'list', 'patch', 'update', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'deletecollection', 'get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:resourcequota-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kube-controller-manager",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/log', 'nodes/metrics', 'nodes/proxy', 'nodes/stats'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/configz', 'nodes/healthz', 'nodes/pods'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        }
+      ]
+    },
+    {
+      "namespace": "kube-public",
+      "summary": {
+        "CRITICAL": 2,
+        "HIGH": 14,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "finding_count": 16,
+      "findings": [
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/cluster-admin",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/system:masters",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/kubeadm:cluster-admins",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/kubeadm:cluster-admins",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=[], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:aggregate-to-admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'get', 'list', 'patch', 'update', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'deletecollection', 'get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:resourcequota-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kube-controller-manager",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/log', 'nodes/metrics', 'nodes/proxy', 'nodes/stats'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/configz', 'nodes/healthz', 'nodes/pods'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        }
+      ]
+    },
+    {
+      "namespace": "kube-system",
+      "summary": {
+        "CRITICAL": 7,
+        "HIGH": 30,
+        "MEDIUM": 13,
+        "LOW": 7,
+        "INFO": 0
+      },
+      "finding_count": 57,
+      "findings": [
+        {
+          "severity": "CRITICAL",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/calico-node",
+          "title": "Privileged container",
+          "evidence": "securityContext.privileged=true",
+          "recommendation": "Remove privileged mode unless strictly required."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/upgrade-ipam",
+          "title": "Privileged container",
+          "evidence": "securityContext.privileged=true",
+          "recommendation": "Remove privileged mode unless strictly required."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/install-cni",
+          "title": "Privileged container",
+          "evidence": "securityContext.privileged=true",
+          "recommendation": "Remove privileged mode unless strictly required."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/mount-bpffs",
+          "title": "Privileged container",
+          "evidence": "securityContext.privileged=true",
+          "recommendation": "Remove privileged mode unless strictly required."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/kube-proxy/kube-proxy",
+          "title": "Privileged container",
+          "evidence": "securityContext.privileged=true",
+          "recommendation": "Remove privileged mode unless strictly required."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/cluster-admin",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/system:masters",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "CRITICAL",
+          "category": "RBAC",
+          "resource": "ClusterRoleBinding/kubeadm:cluster-admins",
+          "title": "cluster-admin binding",
+          "evidence": "Group:/kubeadm:cluster-admins",
+          "recommendation": "Review whether full cluster-admin is necessary."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "Host network enabled",
+          "evidence": "spec.hostNetwork=true",
+          "recommendation": "Disable hostNetwork unless required."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "lib-modules: /lib/modules",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "var-run-calico: /var/run/calico",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "var-lib-calico: /var/lib/calico",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "xtables-lock: /run/xtables.lock",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "sys-fs: /sys/fs/",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "bpffs: /sys/fs/bpf",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "nodeproc: /proc",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "cni-bin-dir: /opt/cni/bin",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "cni-net-dir: /etc/cni/net.d",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "cni-log-dir: /var/log/calico/cni",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "host-local-net-dir: /var/lib/cni/networks",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "hostPath volume used",
+          "evidence": "policysync: /var/run/nodeagent",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/kube-proxy",
+          "title": "Host network enabled",
+          "evidence": "spec.hostNetwork=true",
+          "recommendation": "Disable hostNetwork unless required."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/kube-proxy",
+          "title": "hostPath volume used",
+          "evidence": "xtables-lock: /run/xtables.lock",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "Pod Security",
+          "resource": "kube-system/DaemonSet/kube-proxy",
+          "title": "hostPath volume used",
+          "evidence": "lib-modules: /lib/modules",
+          "recommendation": "Replace hostPath with a safer volume type where possible."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/cluster-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=[], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:aggregate-to-admin",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'get', 'list', 'patch', 'update', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:generic-garbage-collector",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:horizontal-pod-autoscaler",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['delete', 'deletecollection', 'get', 'list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:namespace-controller",
+          "title": "Role-management permission",
+          "evidence": "Role/RoleBinding write permission detected",
+          "recommendation": "Review for privilege escalation risk."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:controller:resourcequota-controller",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kube-controller-manager",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['*'], verbs=['list', 'watch']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/log', 'nodes/metrics', 'nodes/proxy', 'nodes/stats'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "HIGH",
+          "category": "RBAC",
+          "resource": "ClusterRole/system:kubelet-api-admin",
+          "title": "Wildcard RBAC permission",
+          "evidence": "resources=['nodes/configz', 'nodes/healthz', 'nodes/pods'], verbs=['*']",
+          "recommendation": "Replace wildcards with least-privilege permissions."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "kube-system/Deployment/calico-kube-controllers",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/Deployment/coredns",
+          "title": "Seccomp not explicitly configured",
+          "evidence": "No seccompProfile found",
+          "recommendation": "Use RuntimeDefault or an appropriate Localhost profile."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/Deployment/coredns/coredns",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Linux Capabilities",
+          "resource": "kube-system/Deployment/coredns/coredns",
+          "title": "Additional capabilities added",
+          "evidence": "['NET_BIND_SERVICE']",
+          "recommendation": "Drop unnecessary capabilities."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "kube-system/Deployment/coredns",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/calico-node",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/upgrade-ipam",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/install-cni",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/calico-node/mount-bpffs",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "kube-system/DaemonSet/calico-node",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/kube-proxy",
+          "title": "Seccomp not explicitly configured",
+          "evidence": "No seccompProfile found",
+          "recommendation": "Use RuntimeDefault or an appropriate Localhost profile."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "Container Security",
+          "resource": "kube-system/DaemonSet/kube-proxy/kube-proxy",
+          "title": "Non-root execution not enforced",
+          "evidence": "runAsNonRoot is not true at container/pod level",
+          "recommendation": "Set runAsNonRoot=true."
+        },
+        {
+          "severity": "MEDIUM",
+          "category": "ServiceAccount",
+          "resource": "kube-system/DaemonSet/kube-proxy",
+          "title": "ServiceAccount token may be mounted",
+          "evidence": "automountServiceAccountToken is not false",
+          "recommendation": "Set false unless API access is required."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/Deployment/calico-kube-controllers/calico-kube-controllers",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/DaemonSet/calico-node/calico-node",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/DaemonSet/calico-node/upgrade-ipam",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/DaemonSet/calico-node/install-cni",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/DaemonSet/calico-node/mount-bpffs",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Workload Hardening",
+          "resource": "kube-system/DaemonSet/kube-proxy/kube-proxy",
+          "title": "No resource limits",
+          "evidence": "resources.limits absent",
+          "recommendation": "Set CPU and memory limits based on measured usage."
+        },
+        {
+          "severity": "LOW",
+          "category": "Network Security",
+          "resource": "kube-system",
+          "title": "No NetworkPolicy found",
+          "evidence": "Workloads exist but no NetworkPolicy objects exist",
+          "recommendation": "Define expected ingress and egress policies."
+        }
+      ]
+    }
+  ],
+  "model": "gpt-5.6-mini",
+  "ai_explanation": "AI explanation unavailable: name 'client_openai' is not defined"
+}
