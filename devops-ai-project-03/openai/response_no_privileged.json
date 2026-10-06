@@ -1,3 +1,39 @@
+test-bad-workload.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: insecure-test
+  namespace: default
+
+spec:
+  hostNetwork: true
+  hostPID: true
+
+  containers:
+    - name: insecure-container
+      image: nginx:latest
+
+      securityContext:
+        privileged: false //changed the privilege to false
+        runAsUser: 0
+        allowPrivilegeEscalation: false //changed the privilege to false
+
+        capabilities:
+          add:
+            - NET_ADMIN
+            - SYS_ADMIN
+
+      volumeMounts:
+        - name: host-root
+          mountPath: /host
+
+  volumes:
+    - name: host-root
+      hostPath:
+        path: /
+        type: Directory
+
+
 {
   "namespace": "default",
   "summary": {
